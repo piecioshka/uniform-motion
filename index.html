@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uniform Motion</title>
+    <style>
+        .client {
+            width: 250px;
+            height: 350px;
+            border: 1px solid black;
+            position: relative;
+            float: left;
+            margin: 110px 45px;
+            color: #3e3e3e;
+        }
+        .cloud {
+            width: 70px;
+            height: 100px;
+            background: #4271ae;
+            border-radius: 50px;
+            display: block;
+            position: absolute;
+        }
+        #first-client { background: #FFCC2B; }
+        #first-cloud { background: #997A1A; left: 150px; top: 200px; }
+        #second-client { background: #E8680C; }
+        #second-cloud { background: #873C07; left: 150px; top: 200px; }
+        #third-client { background: #B40CE8; }
+        #third-cloud { background: #690787; left: 150px; top: 200px; }
+        #fourth-client { background: #0D11FF; }
+        #fourth-cloud { background: #070987; left: 150px; top: 200px; }
+    </style>
+</head>
+<body>
+
+    <section id="first-client" class="client">Direction: <code>right</code>
+        <span id="first-cloud" class="cloud motion"
+              data-move="1"
+              data-use-to-move="left"
+              data-due-to="top"
+              data-speed="1"></span>
+    </section>
+    <section id="second-client" class="client">Direction: <code>left</code>
+        <span id="second-cloud" class="cloud motion"
+              data-move="-1"
+              data-use-to-move="left"
+              data-due-to="top"
+              data-speed="1"></span>
+    </section>
+    <section id="third-client" class="client">Direction: <code>bottom</code>
+        <span id="third-cloud" class="cloud motion"
+              data-move="1"
+              data-use-to-move="top"
+              data-due-to="left"
+              data-speed="1"></span>
+    </section>
+    <section id="fourth-client" class="client">Direction: <code>top</code>
+        <span id="fourth-cloud" class="cloud motion"
+              data-move="-1"
+              data-use-to-move="top"
+              data-due-to="left"
+              data-speed="1"></span>
+    </section>
+
+    <script src="libs/jquery.js"></script>
+    <script src="libs/underscore.js"></script>
+    <script src="libs/requestAnimationFrame.js"></script>
+    <script src="src/uniform-motion.js"></script>
+    <script>
+        $('.client').each(function () {
+            new UniformMotion(this, {
+                'limit-x': 250,
+                'limit-y': 350
+            });
+        });
+    </script>
+</body>
+</html>
