@@ -83,6 +83,14 @@
         _style[useToMoveKey] = 'auto';
         _style[dueToKey] = 'auto';
 
+        var preffix = (function () {
+            if (_.is().engine.webkit) return 'webkitTransform';
+            if (_.is().browser.mozilla) return 'mozTransform';
+            if (_.is().browser.msie) return 'msTransform';
+            if (_.is().browser.opera) return 'oTransform';
+            return 'transform';
+        }());
+
         var render = function () {
             // get movable value
             var useToMoveVal = _.first(_.values(useToMove));
@@ -91,13 +99,8 @@
             if (useToMoveKey === 'top') {
                 transformOptions = transformOptions.reverse();
             }
-            var transformValue = 'translate(' + transformOptions.join(', ') + ')';
             // apply
-            _style.webkitTransform = transformValue;
-            _style.mozTransform = transformValue;
-            _style.msTransform = transformValue;
-            _style.oTransform = transformValue;
-            _style.transform = transformValue;
+            _style[preffix] = 'translate(' + transformOptions.join(', ') + ')';
             // append speed
             _attrs['use-to-move'][useToMoveKey] = useToMoveVal + (dir * speed);
 
@@ -105,8 +108,9 @@
         };
 
         (function loop() {
-            requestAnimationFrame(loop);
             render();
+            // _.delay(loop, 100);
+            requestAnimationFrame(loop);
         }());
     };
 
