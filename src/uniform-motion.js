@@ -84,10 +84,10 @@
         _style[dueToKey] = 'auto';
 
         var preffix = (function () {
-            if (_.is().engine.webkit) return 'webkitTransform';
-            if (_.is().browser.mozilla) return 'mozTransform';
-            if (_.is().browser.msie) return 'msTransform';
-            if (_.is().browser.opera) return 'oTransform';
+            if (is().engine.webkit) return 'webkitTransform';
+            if (is().browser.mozilla) return 'mozTransform';
+            if (is().browser.msie) return 'msTransform';
+            if (is().browser.opera) return 'oTransform';
             return 'transform';
         }());
 

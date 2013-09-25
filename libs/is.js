@@ -1,18 +1,18 @@
 /**
- * @fileOverview Underscore.js client detection helper
- * @requires {@link http://underscorejs.org/|Underscore.js}
- * @see https://github.com/piecioshka/underscore-is
  * @author Piotr Kowalski <piecioshka@gmail.com>
- * @license The MIT License (MIT)
+ * @fileOverview Underscore.js client detection helper
+ * @license The MIT License
+ * @see https://github.com/piecioshka/is
  * @example
- *   _.is().browser.chrome // under Chrome returns @type {boolean} 'true'
- *   _.is().engine.webkit // under Chrome & Safari returns @type {boolean} 'true'
- *   _.is().tv.sharp // under TV Sharp returns @type {boolean} 'true'
- *   _.is().os.linux // under Operating System Linux returns @type {boolean} 'true'
+ *   is().browser.chrome // under Chrome returns @type {boolean} 'true'
+ *   is().engine.webkit // under Chrome & Safari returns @type {boolean} 'true'
+ *   is().tv.sharp // under TV Sharp returns @type {boolean} 'true'
+ *   is().os.linux // under Operating System Linux returns @type {boolean} 'true'
+ *   is().mobile.iphone // under Mobile iPhone returns @type {boolean} 'true'
  */
-/*jslint nomen: true, indent: 4 */
-/*global _ */
-(function (_) {
+/*jslint indent: 4, nomen: true, plusplus: true, vars: true */
+/*global navigator */
+(function (global) {
     'use strict';
 
     // default User-Agent
@@ -43,37 +43,43 @@
         browser: null,
         engine: null,
         tv: null,
-        os: null
+        os: null,
+        mobile: null
     };
 
     function update() {
         api.browser = (function () {
             var list = {}, i, len = browsers.length;
             for (i = 0; i < len; ++i) {
-                browsers[i][1].test(api.ua) && (list[browsers[i][0]] = true);
+                if (browsers[i][1].test(api.ua)) {
+                    list[browsers[i][0]] = true;
+                }
             }
             return list;
         }());
         api.engine = (function () {
             var list = {}, i, len = engines.length;
             for (i = 0; i < len; ++i) {
-                engines[i][1].test(api.ua) && (list[engines[i][0]] = true);
+                if (engines[i][1].test(api.ua)) {
+                    list[engines[i][0]] = true;
+                }
             }
             return list;
         }());
     }
 
-    _.is = function (custom) {
-        api.ua = (_.isString(custom)) ? custom : _ua;
+    // exports
+    global.is = function (custom) {
+        var app = cache[custom];
+        api.ua = (typeof custom === 'string') ? custom : _ua;
 
-        if (!_.has(cache, custom)) {
+        if (!cache.hasOwnProperty(custom)) {
             update();
             if (!cache[api.ua]) {
                 cache[api.ua] = api;
             }
-            return cache[api.ua];
-        } else {
-            return cache[custom];
+            app = cache[api.ua];
         }
+        return app;
     };
-}(_));
+}(this));
