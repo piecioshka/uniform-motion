@@ -1,0 +1,25 @@
+.client {
+    width: 250px;
+    height: 350px;
+    border: 1px solid black;
+    position: relative;
+    float: left;
+    margin: 110px 45px;
+    color: #3e3e3e;
+}
+.cloud {
+    width: 70px;
+    height: 100px;
+    background: #4271ae;
+    border-radius: 50px;
+    display: block;
+    position: absolute;
+}
+#first-client { background: #FFCC2B; }
+#first-cloud { background: #997A1A; left: 150px; top: 200px; }
+#second-client { background: #E8680C; }
+#second-cloud { background: #873C07; left: 150px; top: 200px; }
+#third-client { background: #B40CE8; }
+#third-cloud { background: #690787; left: 150px; top: 200px; }
+#fourth-client { background: #0D11FF; }
+#fourth-cloud { background: #070987; left: 150px; top: 200px; }
