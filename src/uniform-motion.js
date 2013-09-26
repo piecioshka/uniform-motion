@@ -83,11 +83,14 @@
         _style[useToMoveKey] = 'auto';
         _style[dueToKey] = 'auto';
 
-        var preffix = (function () {
+        var prefix = (function () {
             if (is().engine.webkit) return 'webkitTransform';
-            if (is().browser.mozilla) return 'mozTransform';
             if (is().browser.msie) return 'msTransform';
-            if (is().browser.opera) return 'oTransform';
+            // disable this for work properly under:
+            //  - latest Mozilla Firefox
+            // if (is().browser.mozilla) return 'mozTransform';
+            //  - latest Opera
+            // if (is().browser.opera) return 'oTransform';
             return 'transform';
         }());
 
@@ -100,7 +103,7 @@
                 transformOptions = transformOptions.reverse();
             }
             // apply
-            _style[preffix] = 'translate(' + transformOptions.join(', ') + ')';
+            _style[prefix] = 'translate(' + transformOptions.join(', ') + ')';
             // append speed
             _attrs['use-to-move'][useToMoveKey] = useToMoveVal + (dir * speed);
 
