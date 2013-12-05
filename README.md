@@ -31,7 +31,7 @@ Available attributes:
 After that in JavaScript code you must create instance of `UniformMotion`.
 Some options are available.
 
-```javascript
+```js
 new UniformMotion(/* HTMLElement, options */);
 ```
 
@@ -43,7 +43,7 @@ new UniformMotion(/* HTMLElement, options */);
 License
 =======
 
-[The MIT License][1]
+[The MIT License][0]
 
+[0]: http://piecioshka.mit-license.org
 
-[1]: https://github.com/piecioshka/uniform-motion/blob/master/LICENSE
