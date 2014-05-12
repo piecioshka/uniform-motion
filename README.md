@@ -1,10 +1,8 @@
-uniform-motion
-==============
+# uniform-motion
 
 Rectilinear Uniform Motion to object with `CSS3` transform: `translate()`.
 
-API
-===
+## API
 
 For use this helper must add special attributes in `html` and `*.js`.
 
@@ -40,14 +38,9 @@ new UniformMotion(/* HTMLElement, options */);
  - `limit-x` - limit from on `X` axis ( *default:* window width )
  - `limit-y`  - limit from on `Y` axis ( *default:* window height )
 
-License
-=======
+## License
 
 [The MIT License][0]
 
 [0]: http://piecioshka.mit-license.org
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/piecioshka/uniform-motion/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
